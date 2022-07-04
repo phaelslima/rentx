@@ -17,6 +17,7 @@ import {
   Type,
   CarImage
 } from './styles'
+import { getAccessoryIcon } from '../../utils/getAccessoryIcon'
 
 
 interface Props extends TouchableOpacityProps {
@@ -24,6 +25,8 @@ interface Props extends TouchableOpacityProps {
 }
 
 export function Car({ data, ...rest }: Props) {
+  const MotoIcon = getAccessoryIcon(data.fuel_type)
+
   return (
     <Container {...rest}>
       <Details>
@@ -37,7 +40,7 @@ export function Car({ data, ...rest }: Props) {
           </Rent>
 
           <Type>
-            <GasolineSvg />
+            <MotoIcon />
           </Type>
         </About>
       </Details>
