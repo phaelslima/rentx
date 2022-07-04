@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { Text, View } from 'react-native'
 
 import * as SplashScreen from 'expo-splash-screen'
 
@@ -9,8 +8,8 @@ import { Archivo_400Regular, Archivo_500Medium, Archivo_600SemiBold } from '@exp
 
 import { ThemeProvider } from 'styled-components'
 import theme from './src/styles/theme'
-
 import { Home } from './src/screens/Home'
+import { Routes } from './src/routes'
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -49,9 +48,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
-        <Home />
-      </View>
+      <Routes onReady={onLayoutRootView} />
     </ThemeProvider>
   )
 }
