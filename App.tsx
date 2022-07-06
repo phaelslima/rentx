@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import * as SplashScreen from 'expo-splash-screen'
 
@@ -10,6 +11,7 @@ import { ThemeProvider } from 'styled-components'
 import theme from './src/styles/theme'
 import { Home } from './src/screens/Home'
 import { Routes } from './src/routes'
+
 
 export default function App() {
   const [appIsReady, setAppIsReady] = useState(false)
@@ -47,8 +49,10 @@ export default function App() {
   if (!appIsReady) return null
 
   return (
-    <ThemeProvider theme={theme}>
-      <Routes onReady={onLayoutRootView} />
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <Routes onReady={onLayoutRootView} />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   )
 }
