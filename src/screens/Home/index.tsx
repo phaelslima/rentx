@@ -9,7 +9,7 @@ import Animated, { useAnimatedGestureHandler, useAnimatedStyle, useSharedValue, 
 
 const ButtonAnimated = Animated.createAnimatedComponent(TouchableOpacity)
 
-import { Load } from '../../components/Load'
+import { LoadAnimation } from '../../components/LoadAnimation'
 import { Car } from '../../components/Car'
 
 import { api } from '../../services/api'
@@ -107,7 +107,7 @@ export function Home() {
       </Header>
 
       { loading
-        ? <Load />
+        ? <LoadAnimation />
         : (
           <CarList
             data={cars}

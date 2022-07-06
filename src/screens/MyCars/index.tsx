@@ -25,7 +25,7 @@ import {
   CarFooterPeriod,
   CarFooterDate
 } from './styles'
-import { Load } from '../../components/Load'
+import { LoadAnimation } from '../../components/LoadAnimation'
 
 
 interface CarProps {
@@ -92,7 +92,7 @@ export function MyCars() {
         </Appointments>
 
         { loading
-          ? <Load />
+          ? <LoadAnimation />
           : (
             <FlatList
               data={cars}
