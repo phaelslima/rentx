@@ -11,9 +11,10 @@ interface Props extends TouchableOpacityProps {
   title: string
   color?: string
   loading?: boolean
+  light?: boolean
 }
 
-export function Button({ title, color, disabled, loading = false, ...rest }: Props) {
+export function Button({ title, color, disabled, loading = false, light = false, ...rest }: Props) {
   const theme = useTheme()
 
   return (
@@ -25,7 +26,7 @@ export function Button({ title, color, disabled, loading = false, ...rest }: Pro
     >
       { loading
         ? <ActivityIndicator color={theme.colors.shape} />
-        : <Title>{title}</Title>
+        : <Title light={light}>{title}</Title>
       }
     </Container>
   )
