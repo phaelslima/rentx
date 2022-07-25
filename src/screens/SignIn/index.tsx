@@ -3,6 +3,8 @@ import { Alert, Keyboard, KeyboardAvoidingView, StatusBar, TouchableWithoutFeedb
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 
+import { useAuth } from '../../hooks/auth'
+
 import * as Yup from 'yup'
 
 import { Button } from '../../components/Button'
@@ -18,12 +20,14 @@ import {
   Footer
 } from './styles'
 
+
 export function SignIn() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
   const theme = useTheme()
   const navigation = useNavigation()
+  const { signIn } = useAuth()
 
   async function handleSignIn() {
     try {
@@ -34,7 +38,7 @@ export function SignIn() {
   
       await schema.validate({ email, password })
       
-      Alert.alert('Tudo certo!')
+      signIn({ email, password })
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         Alert.alert(
