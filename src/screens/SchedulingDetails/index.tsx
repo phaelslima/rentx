@@ -90,7 +90,7 @@ export function SchedulingDetails() {
       navigation.reset({
         routes: [
           { name: 'Home' },
-          { name: 'SchedulingComplete'}
+          { name: 'Confirmation', params: { title: 'Carro alugado!', message: `Agora você só precisa ir \naté a concessionária da RENTX \npegar o seu automóvel.`, nextScreenRoute: 'Home' } }
         ]
       })
     })
