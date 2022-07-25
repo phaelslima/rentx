@@ -8,7 +8,7 @@ import {
 } from './styles'
 
 interface Props extends TouchableOpacityProps {
-  color: string
+  color?: string
 }
 
 export function BackButton({ color, ...rest }: Props) {
