@@ -31,7 +31,7 @@ export function Splash() {
   })
 
   function startApp() {
-    navigation.reset({ routes: [ { name: 'Home' } ] })
+    navigation.reset({ routes: [ { name: 'SignIn' } ] })
   }
 
   useEffect(() => {
