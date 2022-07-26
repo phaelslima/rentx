@@ -15,7 +15,7 @@ export function Routes({ onReady }: Props) {
 
   return (
     <NavigationContainer onReady={onReady}>
-      {user ? <AppTabRoutes /> : <AuthRoutes />}
+      {user.id ? <AppTabRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   )
 }
