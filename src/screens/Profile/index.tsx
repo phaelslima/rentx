@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native'
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback } from 'react-native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
 import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
@@ -29,7 +29,7 @@ import {
 } from './styles'
 
 export function Profile() {
-  const { user } = useAuth()
+  const { user, signOut } = useAuth()
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit')
   const [avatar, setAvatar] = useState(user.avatar)
@@ -44,7 +44,20 @@ export function Profile() {
   }
 
   function handleSignOut() {
-
+    Alert.alert(
+      'Tem certeza?',
+      'Se você sair, irá precisar de internet para conectar-se novamente.',
+      [
+        {
+          text: 'Cancelar',
+          onPress: () => {}
+        },
+        {
+          text: 'Sair',
+          onPress: () => signOut()
+        }
+      ]
+    )
   }
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
