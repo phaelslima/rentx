@@ -46,17 +46,19 @@ function AuthProvider({ children }: AuthProviderProps) {
 
       const userCollection = database.get<ModelUser>('users')
       await database.write(async () => {
-        await userCollection.create(newUser => {
+        const dataUser = await userCollection.create(newUser => {
           newUser.user_id = user.id,
           newUser.name = user.name,
           newUser.email = user.email,
-          newUser.driver_license = user.driver_license,
           newUser.avatar = user.avatar,
-          newUser.token = user.token
+          newUser.driver_license = user.driver_license
+          newUser.token = token
         })
+
+        const userData = dataUser._raw as unknown as User
+
+        setData(userData)
       })
-  
-      setData({ ...user, token })
     } catch (error) {
       throw new Error(error)
     }
