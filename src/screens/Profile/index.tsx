@@ -13,6 +13,7 @@ import { Input } from '../../components/Input'
 import { PasswordInput } from '../../components/PasswordInput'
 
 import { useAuth } from '../../hooks/auth'
+import { useNetInfo } from '@react-native-community/netinfo'
 
 import {
   Container,
@@ -32,6 +33,7 @@ import {
 
 export function Profile() {
   const { user, signOut, updatedUser } = useAuth()
+  const netInfo = useNetInfo()
 
   const [option, setOption] = useState<'dataEdit' | 'passwordEdit'>('dataEdit')
   const [avatar, setAvatar] = useState(user.avatar)
@@ -63,7 +65,11 @@ export function Profile() {
   }
 
   function handleOptionChange(optionSelected: 'dataEdit' | 'passwordEdit') {
-    setOption(optionSelected)
+    if (netInfo.isConnected === false && optionSelected === 'passwordEdit') {
+      Alert.alert('Você está Offline', 'Para mudar a senha, conecte-se a Internet')
+    } else {
+      setOption(optionSelected)
+    }
   }
 
   async function handleSelectAvatar() {
